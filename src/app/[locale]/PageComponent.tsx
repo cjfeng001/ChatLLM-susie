@@ -106,18 +106,24 @@ const PageComponent = ({
       }
       done = readerDone;
     }
-    // 保存本次数据
-    saveChatText(valueRef.current);
+    // 确保在所有字符都被添加到 resStr 后再调用 saveChatText
+    setResStr(prevState => {
+      // 更新 valueRef.current
+      valueRef.current = prevState;
+      // 保存本次数据
+      saveChatText();
+      return prevState; // 保持 resStr 不变
+    });
   }
   const valueRef = useRef(resStr);
   useEffect(() => {
     valueRef.current = resStr;
   }, [resStr]);
 
-  const saveChatText = async (resStr) => {
+  const saveChatText = async () => {
     const requestData = {
       input_text: textStr,
-      output_text: resStr,
+      output_text: valueRef.current,
       user_id: userData?.user_id
     }
     const response = await fetch(`/api/chat/saveText`, {
