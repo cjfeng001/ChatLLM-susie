@@ -14,7 +14,6 @@ import * as process from "process";
 const PageComponent = ({
                          locale,
                          indexText,
-                         searchParams,
                          resultInfoListInit
                         }) => {
   const [pagePath] = useState('');
@@ -157,12 +156,6 @@ const PageComponent = ({
 
   return (
     <>
-      {
-        hasAnyKey(searchParams) ?
-          <meta name="robots" content="noindex"/>
-          :
-          null
-      }
       <HeadInfo
         locale={locale}
         page={pagePath}

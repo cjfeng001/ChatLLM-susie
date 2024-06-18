@@ -6,6 +6,9 @@ import {
 import {getChatDetail} from "~/servers/chatRecord";
 import {notFound} from "next/navigation";
 
+export const dynamicParams = true
+export const dynamic = 'error';
+
 export default async function IndexPage({params: {locale = '', uid = ''}}) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
