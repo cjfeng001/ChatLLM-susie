@@ -15,6 +15,7 @@ import LoginModal from './LoginModal';
 import LogoutModal from "./LogoutModal";
 import {getLinkHref} from "~/utils/buildLink";
 import ToastModal from "~/components/ToastModal";
+import OneTapComponent from "~/components/OneTapComponent";
 
 export default function Header({
                                  locale,
@@ -51,6 +52,12 @@ export default function Header({
 
   return (
     <header className="bg-white top-0 z-20 w-full border border-b-gray-100">
+      {
+        process.env.NEXT_PUBLIC_CHECK_GOOGLE_LOGIN != '0' ?
+          <OneTapComponent/>
+          :
+          null
+      }
       <LoadingModal loadingText={commonText.loadingText}/>
       <LoginModal
         loadingText={commonText.loadingText}
@@ -114,7 +121,7 @@ export default function Header({
               null
           }
           {
-            userData ?
+            userData.email ?
               <Link
                 href={getLinkHref(locale, process.env.NEXT_PUBLIC_MY_NAME)}
                 onClick={() => checkPageAndLoading(process.env.NEXT_PUBLIC_MY_NAME)}
@@ -171,7 +178,7 @@ export default function Header({
         {
           process.env.NEXT_PUBLIC_CHECK_GOOGLE_LOGIN != '0' ?
             <div className="hidden ltr:lg:ml-2 rtl:lg:mr-2 lg:relative lg:inline-block lg:text-left">
-              <LoginButton buttonType={userData ? 1 : 0} loginText={authText.loginText}/>
+              <LoginButton buttonType={userData.email ? 1 : 0} loginText={authText.loginText}/>
             </div>
             :
             null
@@ -224,7 +231,7 @@ export default function Header({
                     null
                 }
                 {
-                  userData ?
+                  userData.email ?
                     <Link
                       href={getLinkHref(locale, process.env.NEXT_PUBLIC_MY_NAME)}
                       onClick={() => checkPageAndLoading(process.env.NEXT_PUBLIC_MY_NAME)}
@@ -286,7 +293,7 @@ export default function Header({
                 process.env.NEXT_PUBLIC_CHECK_GOOGLE_LOGIN != '0' ?
                   <div
                     className="relative inline-block text-left text-base font-semibold ltr:ml-2 rtl:mr-2">
-                    <LoginButton buttonType={userData ? 1 : 0} loginText={authText.loginText}/>
+                    <LoginButton buttonType={userData.email ? 1 : 0} loginText={authText.loginText}/>
                   </div>
                   :
                   null

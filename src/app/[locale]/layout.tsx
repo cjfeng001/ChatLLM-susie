@@ -36,7 +36,7 @@ export default async function LocaleLayout({
   const menuText = await getMenuText();
 
   return (
-    <html lang={locale} dir={locale == 'ar' ? 'rtl':'ltr'}>
+    <html lang={locale} dir={locale == 'ar' ? 'rtl' : 'ltr'}>
     {
       process.env.NEXT_PUBLIC_GOOGLE_OPEN != '0' ?
         <head>
@@ -45,6 +45,9 @@ export default async function LocaleLayout({
         :
         null
     }
+    <head>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+    </head>
     <body suppressHydrationWarning={true} className={clsx(inter.className, 'flex flex-col background-div')}>
     <NextAuthProvider>
       <CommonProvider
