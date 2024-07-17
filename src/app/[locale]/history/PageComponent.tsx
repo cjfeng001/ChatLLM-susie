@@ -50,7 +50,7 @@ const PageComponent = ({
   };
 
   const getCurrentWorkList = async (newPage) => {
-    if (!userData) {
+    if (!userData.email) {
 
     } else {
       setCurrentPage(newPage);
