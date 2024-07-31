@@ -7,7 +7,7 @@ import {
 
 import {getLatestChatResultList} from "~/servers/chatRecord";
 
-export const revalidate = 30;
+export const revalidate = 300;
 export default async function IndexPage({params: {locale = ''}}) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
