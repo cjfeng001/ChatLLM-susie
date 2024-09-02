@@ -9,7 +9,6 @@ import {getLinkHref} from "~/utils/buildLink";
 import TextCardItem from "~/components/TextCardItem";
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
-import * as process from "process";
 
 const PageComponent = ({
                          locale,
